@@ -1,0 +1,44 @@
+[20:56:13] [main/INFO]: Setting user: Player779
+[20:56:16] [Client thread/INFO]: LWJGL Version: 2.9.1
+[20:56:30] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:MineClass, FMLFileResourcePack:MineExpBar, FMLFileResourcePack:MineSpells, FMLFileResourcePack:MineStats, FMLFileResourcePack:MineTeam
+[20:56:31] [Sound Library Loader/INFO]: Sound engine started
+[20:56:32] [Client thread/INFO]: Created: 16x16 textures/blocks-atlas
+[20:56:32] [Client thread/INFO]: Created: 16x16 textures/items-atlas
+[20:56:32] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:MineClass, FMLFileResourcePack:MineExpBar, FMLFileResourcePack:MineSpells, FMLFileResourcePack:MineStats, FMLFileResourcePack:MineTeam
+[20:56:33] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[20:56:33] [Client thread/INFO]: Created: 256x256 textures/items-atlas
+[20:56:34] [Sound Library Loader/INFO]: Sound engine started
+[20:56:37] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
+[20:56:37] [Server thread/INFO]: Generating keypair
+[20:56:38] [Server thread/INFO]: Preparing start region for level 0
+[20:56:39] [Server thread/INFO]: Preparing spawn area: 27%
+[20:56:39] [Server thread/INFO]: Changing view distance to 4, from 10
+[20:56:40] [Server thread/INFO]: Player779[local:E:1a4bbde4] logged in with entity id 251 at (670.5522771688451, 6.529367595578465, 814.7829649550754)
+[20:56:40] [Server thread/INFO]: Player779 joined the game
+[20:56:41] [Server thread/INFO]: Saving and pausing game...
+[20:56:41] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[20:56:41] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[20:56:41] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[20:56:55] [Client thread/INFO]: [CHAT] A team with the same name already exist.
+[20:56:56] [Client thread/INFO]: [CHAT] A team with the same name already exist.
+[20:56:57] [Client thread/INFO]: [CHAT] A team with the same name already exist.
+[20:57:00] [Server thread/INFO]: Player779 has just earned the achievement [Taking Inventory]
+[20:57:00] [Client thread/INFO]: [CHAT] Player779 has just earned the achievement [Taking Inventory]
+[20:57:02] [Server thread/INFO]: <Player779> test
+[20:57:02] [Client thread/INFO]: [CHAT] <Player779> test
+[20:57:04] [Client thread/INFO]: [CHAT] Your group prefix has been changed.
+[20:57:40] [Server thread/INFO]: Saving and pausing game...
+[20:57:41] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[20:57:41] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[20:57:41] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[20:58:07] [Server thread/INFO]: Saving and pausing game...
+[20:58:07] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[20:58:07] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[20:58:07] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[20:58:07] [Client thread/INFO]: Stopping!
+[20:58:07] [Server thread/INFO]: Stopping server
+[20:58:07] [Server thread/INFO]: Saving players
+[20:58:07] [Server thread/INFO]: Saving worlds
+[20:58:07] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[20:58:07] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[20:58:07] [Server thread/INFO]: Saving chunks for level 'New World'/The End

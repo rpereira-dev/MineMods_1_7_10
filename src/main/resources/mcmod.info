@@ -1,0 +1,76 @@
+[
+
+{
+  "modid": "mineteam",
+  "name": "MineTeam",
+  "description": "A mod which adds a GUI for the scoreboard team system.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["toss"],
+  "credits": "The Forge and FML guys, for making this example",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+},
+
+{
+  "modid": "minestats",
+  "name": "MineStats",
+  "description": "A simple mod API which allow modders to program on a compatible stats system",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["toss"],
+  "credits": "The Forge and FML guys, for making this example",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+},
+
+{
+  "modid": "minespells",
+  "name": "MineSpells",
+  "description": "A mod which adds a spell system.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["toss"],
+  "credits": "The Forge and FML guys, for making this example",
+  "logoFile": "",
+  "screenshots": []
+},
+
+{
+  "modid": "mineexpbar",
+  "name": "MineExpBar",
+  "description": "A mod which adds an extra experience system (independant from standart minecraft one, which doesnt reset the experience on death).",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["toss"],
+  "credits": "The Forge and FML guys, for making this example",
+  "logoFile": "",
+  "screenshots": []
+},
+
+{
+  "modid": "mineclass",
+  "name": "MineClass",
+  "description": "A mod which adds a class system.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["toss"],
+  "credits": "The Forge and FML guys, for making this example",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": ["minestats", "minespells", "mineexpbar"]
+}
+
+]

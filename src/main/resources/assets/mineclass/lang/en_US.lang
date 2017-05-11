@@ -1,0 +1,34 @@
+#   Lang file for Stats mod
+#   lang: English
+#   lang: EN_US
+
+#   Stats
+stats.conseil=Advices
+stats.name.hp=HP
+stats.name.agility=Agility
+stats.name.magic=Magic
+stats.name.stamina=Stamina
+stats.name.strength=Strength
+stats.name.mana=Mana
+stats.name.rage=Rage
+stats.name.energy=Energy
+stats.name.maxmana=Mana Max.
+stats.name.maxrage=Rage Max.
+stats.name.maxenergy=Energy Max.
+stats.name.mana_regen=Mana Regen.
+stats.name.armor=Armor
+stats.name.clarity=Clarity
+stats.name.spirit=Spirituality
+stats.name.damage=Damages
+stats.name.critic=Critical
+
+stats.desc.magic=+ 5 magics per point
+stats.desc.power=+ 5 powers per point
+stats.desc.stamina=+ 1 hearth per 20 points
+stats.desc.strength=+ 5 power per point
+stats.desc.agility=+ 0.2% critic and 2 power per point
+stats.desc.clarity=+ 5 magic and 20 manas per point
+stats.desc.spirit=+ 1 mana regen / sec per 10 points
+stats.desc.maxmana=+ 1 mana per point
+stats.desc.maxrage=+ 1 rage per point
+stats.desc.maxenergy=+ 1 energy per point
