@@ -1,0 +1,17 @@
+[
+
+{
+  "modid": "mineutils",
+  "name": "MineTeam",
+  "description": "A library which adds extra functions to minecraft for modders",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["toss"],
+  "credits": "The Forge and FML guys, for making this example",
+  "logoFile": "",
+  "screenshots": []
+}
+
+]

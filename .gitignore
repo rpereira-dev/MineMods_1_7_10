@@ -4,7 +4,9 @@ run/
 .gradle/
 build/
 gradle-app.setting
-saves/
+minecraft
+MineUtils/build
+MineTeam/build
 
 ## IntelliJ IDEA
 
