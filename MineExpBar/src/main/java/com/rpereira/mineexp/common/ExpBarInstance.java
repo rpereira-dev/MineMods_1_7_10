@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 import com.rpereira.mineutils.Logger;
 
+import net.minecraft.nbt.NBTTagCompound;
+
 public class ExpBarInstance {
 
 	/** attributes */
@@ -21,10 +23,7 @@ public class ExpBarInstance {
 	/** the uuid */
 	private final int uuid;
 
-	public ExpBarInstance(ExpBar expBar, int uuid, Object... attributes) {
-		if (attributes.length > 0) {
-			this.setAttributes(attributes);
-		}
+	public ExpBarInstance(ExpBar expBar, int uuid) {
 		this.uuid = uuid;
 		this.expBar = expBar;
 	}
@@ -103,5 +102,28 @@ public class ExpBarInstance {
 
 	public HashMap<Object, Object> getAttributes() {
 		return (this.attributes);
+	}
+
+	public void writeToNBT(NBTTagCompound nbt) {
+		String prefix = String.valueOf(expBar.getID());
+		nbt.setBoolean(prefix, true);
+		nbt.setInteger(prefix + "level", this.level);
+		nbt.setInteger(prefix + "exp", this.exp);
+	}
+
+	public void loadFromNBT(NBTTagCompound nbt) {
+		String prefix = String.valueOf(this.expBar.getID());
+
+		if (this.attributes != null) {
+			this.attributes.clear();
+		}
+
+		if (!nbt.hasKey(prefix)) {
+			this.exp = 0;
+			this.level = 0;
+		} else {
+			this.exp = nbt.getInteger(prefix + "exp");
+			this.level = nbt.getInteger(prefix + "level");
+		}
 	}
 }

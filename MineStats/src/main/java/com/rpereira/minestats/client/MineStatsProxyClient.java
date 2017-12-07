@@ -21,7 +21,6 @@ public class MineStatsProxyClient extends MineStatsProxy {
 	public void init() {
 		super.init();
 		Logger.get().log(Logger.Level.FINE, "Init MineStatsProxyClient");
-		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	@SubscribeEvent

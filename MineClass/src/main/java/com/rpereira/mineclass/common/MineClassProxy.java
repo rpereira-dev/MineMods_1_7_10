@@ -1,10 +1,12 @@
 package com.rpereira.mineclass.common;
 
+import java.util.Collection;
 import java.util.HashMap;
 
 import com.rpereira.mineclass.common.classes.EntityClass;
-import com.rpereira.mineclass.common.classes.EntityClassFarmer;
 import com.rpereira.mineclass.common.classes.EntityClassInstance;
+import com.rpereira.mineclass.common.exp.MineClassExp;
+import com.rpereira.mineclass.common.packet.Packets;
 import com.rpereira.mineclass.common.stats.MineClassStats;
 import com.rpereira.mineutils.Logger;
 
@@ -12,9 +14,12 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
 public class MineClassProxy {
 
@@ -24,9 +29,6 @@ public class MineClassProxy {
 	/** the loaded class instances */
 	private final HashMap<EntityLivingBase, EntityClassInstance> entityClassesInstances;
 
-	/** the default class */
-	public static final EntityClass CLASS_FARMER = new EntityClassFarmer();
-
 	public MineClassProxy() {
 		this.entityClasses = new HashMap<Integer, EntityClass>();
 		this.entityClassesInstances = new HashMap<EntityLivingBase, EntityClassInstance>();
@@ -34,25 +36,70 @@ public class MineClassProxy {
 
 	public void preInit() {
 		Logger.get().log(Logger.Level.FINE, "PreInit MineClassProxy");
+		MineClassExp.preInit();
 		MineClassStats.preInit();
+		Packets.preInit();
 	}
 
 	public void init() {
 		Logger.get().log(Logger.Level.FINE, "Init MineClassProxy");
+		MineClassExp.init();
 		MineClassStats.init();
-		this.registerClass(CLASS_FARMER);
 
 		FMLCommonHandler.instance().bus().register(this);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
+	@SubscribeEvent
+	public void onLivingDeath(LivingDeathEvent event) {
+		EntityLivingBase died = event.entityLiving;
+		if (died != null) {
+			EntityClassInstance diedInstance = this.getEntityClassInstance(died);
+			if (diedInstance != null) {
+				diedInstance.onEntityDied(event.source);
+				this.removeEntityClassInstance(diedInstance);
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public void onLivingAttack(LivingAttackEvent event) {
+
+		float amount = event.ammount;
+		Entity attacker = event.source.getEntity();
+		EntityLivingBase attacked = event.entityLiving;
+		DamageSource damageSource = event.source;
+
+		if (attacker != null && attacker instanceof EntityLivingBase) {
+			EntityClassInstance attackerInstance = this.getEntityClassInstance((EntityLivingBase) attacker);
+			if (attackerInstance != null) {
+				attackerInstance.onAttack(attacked, damageSource, amount);
+			}
+		}
+
+		if (attacked != null) {
+			EntityClassInstance attackedInstance = this.getEntityClassInstance(attacked);
+			if (attackedInstance != null) {
+				attackedInstance.onBeingAttacked(attacker, damageSource, amount);
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
+		EntityClassInstance entityClassInstance = this.getEntityClassInstance(event.player);
+		if (entityClassInstance != null) {
+			entityClassInstance.onRespawn();
+		} else {
+			entityClassInstance = new EntityClassInstance(event.player);
+			this.spawnEntityClassInstance(entityClassInstance);
+		}
+	}
+
 	/** called when a player logs in */
 	@SubscribeEvent
 	public void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
-		EntityClassInstance entityClassInstance = this.loadEntityClassInstanceFromNBT(event.player);
-		if (entityClassInstance == null) {
-			entityClassInstance = this.getDefaultEntityClass().newInstance(event.player);
-		}
+		EntityClassInstance entityClassInstance = new EntityClassInstance(event.player);
 		Logger.get().log(Logger.Level.FINE, "Player logged in, setting class", event.player.getCommandSenderName(),
 				entityClassInstance.getEntityClass().getUnlocalizedName());
 		this.spawnEntityClassInstance(entityClassInstance);
@@ -83,9 +130,9 @@ public class MineClassProxy {
 		this.entityClassesInstances.remove(entityClassInstance);
 	}
 
-	/** remove the gievn instance */
-	public final void removeEntityClassInstance(EntityLivingBase entityLivingBase) {
-		this.entityClassesInstances.remove(entityLivingBase);
+	/** remove the given instance */
+	public final EntityClassInstance removeEntityClassInstance(EntityLivingBase entityLivingBase) {
+		return (this.entityClassesInstances.remove(entityLivingBase));
 	}
 
 	/** get all the entity class instances */
@@ -115,26 +162,13 @@ public class MineClassProxy {
 		return (this.entityClasses.get(id));
 	}
 
-	/** load an instance from NBT */
-	public final EntityClassInstance loadEntityClassInstanceFromNBT(EntityLivingBase entityLivingBase) {
-		NBTTagCompound tag = entityLivingBase.getEntityData();
-		if (!tag.hasKey("classID")) {
-			return (null);
-		}
-		EntityClass entityClass = this.getEntityClassForID(tag.getInteger("classID"));
-		return (entityClass.newInstance(entityLivingBase));
-	}
-
-	/** load an instance from NBT */
-	public final void saveEntityClassInstanceToNBT(EntityClassInstance entityClassInstance) {
-		EntityLivingBase entity = entityClassInstance.getEntity();
-		NBTTagCompound tag = entity.getEntityData();
-		tag.setInteger("classID", entityClassInstance.getEntityClass().getID());
-	}
-
 	/** get the class instance for the gien entity */
 	public EntityClassInstance getEntityClassInstance(EntityLivingBase entityLivingBase) {
 		return (this.entityClassesInstances.get(entityLivingBase));
+	}
+
+	public final Collection<EntityClass> getEntityClasses() {
+		return (this.entityClasses.values());
 	}
 
 }

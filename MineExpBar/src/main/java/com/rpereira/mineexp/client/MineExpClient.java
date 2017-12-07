@@ -1,10 +1,11 @@
 package com.rpereira.mineexp.client;
 
-import com.rpereira.mineexp.common.ExpBar;
 import com.rpereira.mineexp.common.ExpBarInstance;
 import com.rpereira.mineexp.common.MineExpProxy;
 import com.rpereira.mineutils.Logger;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -27,10 +28,11 @@ public class MineExpClient extends MineExpProxy {
 		return (MINE_EXP_CLIENT);
 	}
 
-	@Override
-	public ExpBarInstance createExpBarInstance(ExpBar expBar, int uuid, Object... attributes) {
-		ExpBarInstance expBarInstance = new ExpBarInstance(expBar, uuid, attributes);
-		this.expBarInstances.put(uuid, expBarInstance);
-		return (expBarInstance);
+	@SubscribeEvent
+	public void onServerTick(TickEvent.ClientTickEvent event) {
+		for (ExpBarInstance expBarInstance : this.expBarInstances.values()) {
+			expBarInstance.update();
+		}
 	}
+
 }

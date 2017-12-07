@@ -35,7 +35,7 @@ public class PacketUtils {
 	 * 
 	 * @throws Exception
 	 */
-	public static void writeHashMap(ByteBuf buf, HashMap<Object, Object> attributes) throws Exception {
+	public static void writeHashMap(ByteBuf buf, HashMap<?, ?> attributes) throws Exception {
 
 		if (attributes == null) {
 			throw new Exception("null hashmap");
@@ -64,7 +64,7 @@ public class PacketUtils {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public static HashMap<Object, Object> readHashMap(ByteBuf buf) throws Exception {
+	public static HashMap<?, ?> readHashMap(ByteBuf buf) throws Exception {
 		int length = buf.readInt();
 		if (length == 0) {
 			throw new Exception("null HashMap");

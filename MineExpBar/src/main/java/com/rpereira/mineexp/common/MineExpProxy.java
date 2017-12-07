@@ -36,10 +36,16 @@ public abstract class MineExpProxy {
 	}
 
 	/** add a new expbar instance */
-	public ExpBarInstance createExpBarInstance(ExpBar expBar, int uuid, Object... attributes) {
-		ExpBarInstance expBarInstance = new ExpBarInstance(expBar, uuid, attributes);
+	public ExpBarInstance createExpBarInstance(ExpBar expBar, int uuid) {
+		ExpBarInstance expBarInstance = new ExpBarInstance(expBar, uuid);
 		this.expBarInstances.put(uuid, expBarInstance);
 		return (expBarInstance);
+	}
+
+	private int nextExpBarInstanceUUID = 0;
+
+	public ExpBarInstance createExpBarInstance(ExpBar expBar) {
+		return (this.createExpBarInstance(expBar, this.nextExpBarInstanceUUID++));
 	}
 
 	public void removeExpBarInstance(ExpBarInstance expBarInstance) {

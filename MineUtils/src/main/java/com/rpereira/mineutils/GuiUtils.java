@@ -14,7 +14,7 @@ import net.minecraft.entity.EntityLivingBase;
 public class GuiUtils {
 
 	/** draw an entity */
-	public static void drawEntity(int posx, int posy, int scalex, float scaley, float roty, EntityLivingBase entity) {
+	public static void drawEntity(int posx, int posy, int scale, float rotx, float roty, EntityLivingBase entity) {
 
 		if (entity == null) {
 			return;
@@ -23,7 +23,7 @@ public class GuiUtils {
 		GL11.glEnable(GL11.GL_COLOR_MATERIAL);
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float) posx, (float) posy, 50.0F);
-		GL11.glScalef((float) (-scalex), (float) scalex, (float) scalex);
+		GL11.glScalef((float) (-scale), (float) scale, (float) scale);
 		GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
 		float f2 = entity.renderYawOffset;
 		float f3 = entity.rotationYaw;
@@ -34,8 +34,8 @@ public class GuiUtils {
 		RenderHelper.enableStandardItemLighting();
 		GL11.glRotatef(-135.0F, 0.0F, 1.0F, 0.0F);
 		GL11.glRotatef(-((float) Math.atan((double) (roty / 40.0F))) * 20.0F, 1.0F, 0.0F, 0.0F);
-		entity.renderYawOffset = (float) Math.atan((double) (scaley / 40.0F)) * 20.0F;
-		entity.rotationYaw = (float) Math.atan((double) (scaley / 40.0F)) * 40.0F;
+		entity.renderYawOffset = (float) Math.atan((double) (rotx / 40.0F)) * 20.0F;
+		entity.rotationYaw = (float) Math.atan((double) (rotx / 40.0F)) * 40.0F;
 		entity.rotationPitch = -((float) Math.atan((double) (roty / 40.0F))) * 20.0F;
 		entity.rotationYawHead = entity.rotationYaw;
 		entity.prevRotationYawHead = entity.rotationYaw;

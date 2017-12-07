@@ -1,8 +1,7 @@
 package com.rpereira.minemod.common.spells.champion;
 
+import com.rpereira.minemod.common.spells.SpellMineMod;
 import com.rpereira.minespells.client.EntityFXSpell;
-import com.rpereira.minespells.client.SpellClientUtils;
-import com.rpereira.minespells.common.Spell;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
@@ -10,14 +9,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-public class SpellCharge extends Spell {
+public class SpellCharge extends SpellMineMod {
 
 	@Override
 	public void playAnimation(Entity caster, Entity target) {
-
-		if (caster == null) {
-			return;
-		}
 
 		World world = Minecraft.getMinecraft().theWorld;
 		for (int i = 0; i < 100; i++) {
@@ -30,8 +25,10 @@ public class SpellCharge extends Spell {
 			}
 			EntityFX particle = new EntityFXSpell(world, caster.posX, caster.posY, caster.posZ, velx, 0.0F, velz, 2.5f,
 					0, 1.0f, 5.0f);
-			SpellClientUtils.spawnParticle(particle);
+			super.spawnParticle(particle);
 		}
+
+		this.processSpell(caster, target);
 	}
 
 	@Override
@@ -41,7 +38,22 @@ public class SpellCharge extends Spell {
 		}
 		Vec3 vec = caster.getLookVec();
 		caster.motionX = vec.xCoord * 3.5d;
-		caster.motionY += 1.2d;
+		caster.motionY += vec.yCoord + 0.5f;
 		caster.motionZ = vec.zCoord * 3.5d;
+	}
+
+	@Override
+	public int getCost() {
+		return (20);
+	}
+
+	@Override
+	public int getRequiredLevel() {
+		return (1);
+	}
+
+	@Override
+	public String getUnlocalizedName() {
+		return ("charge");
 	}
 }

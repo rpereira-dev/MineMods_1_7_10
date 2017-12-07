@@ -11,6 +11,11 @@ public class MineClassStats {
 		public String getUnlocalizedName() {
 			return ("maxmana");
 		}
+
+		@Override
+		public float getDefaultValue() {
+			return (1000);
+		}
 	};
 
 	/** the max rage stat */
@@ -18,6 +23,11 @@ public class MineClassStats {
 		@Override
 		public String getUnlocalizedName() {
 			return ("maxrage");
+		}
+
+		@Override
+		public float getDefaultValue() {
+			return (100);
 		}
 	};
 
@@ -27,6 +37,11 @@ public class MineClassStats {
 		public String getUnlocalizedName() {
 			return ("maxenergy");
 		}
+
+		@Override
+		public float getDefaultValue() {
+			return (100);
+		}
 	};
 
 	/** the mana stat */
@@ -34,6 +49,11 @@ public class MineClassStats {
 		@Override
 		public String getUnlocalizedName() {
 			return ("mana");
+		}
+
+		@Override
+		public float getDefaultValue() {
+			return (STAT_MAX_MANA.getDefaultValue());
 		}
 	};
 
@@ -43,6 +63,11 @@ public class MineClassStats {
 		public String getUnlocalizedName() {
 			return ("rage");
 		}
+
+		@Override
+		public float getDefaultValue() {
+			return (0);
+		}
 	};
 
 	/** the energy stat */
@@ -50,6 +75,24 @@ public class MineClassStats {
 		@Override
 		public String getUnlocalizedName() {
 			return ("energy");
+		}
+
+		@Override
+		public float getDefaultValue() {
+			return (STAT_MAX_ENERGY.getDefaultValue());
+		}
+	};
+
+	/** the magic stat */
+	public static final Stat STAT_MANA_PER_SEC = new Stat() {
+		@Override
+		public float getDefaultValue() {
+			return (1.0f);
+		}
+
+		@Override
+		public String getUnlocalizedName() {
+			return ("mana_per_sec");
 		}
 	};
 
@@ -59,9 +102,11 @@ public class MineClassStats {
 	public static void init() {
 		MineStats.registerStat(STAT_MANA);
 		MineStats.registerStat(STAT_MAX_MANA);
+		MineStats.registerStat(STAT_MANA_PER_SEC);
 		MineStats.registerStat(STAT_RAGE);
 		MineStats.registerStat(STAT_MAX_RAGE);
 		MineStats.registerStat(STAT_ENERGY);
 		MineStats.registerStat(STAT_MAX_ENERGY);
+
 	}
 }

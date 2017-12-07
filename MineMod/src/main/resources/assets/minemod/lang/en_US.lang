@@ -2,33 +2,89 @@
 #   lang: English
 #   lang: EN_US
 
+#   Buttons
+button.selection=Select
+button.back_selection=<- Back to selection
+
+#  KEY BINDINGS
+key.categories.minemod = MineMod
+key.minemod.class = Class Selection GUI
+key.minemod.spellshortcut = Spell shortcut
+
 #   Stats
 stats.conseil=Advices
-stats.name.hp=HP
-stats.name.agility=Agility
-stats.name.magic=Magic
-stats.name.stamina=Stamina
-stats.name.strength=Strength
-stats.name.mana=Mana
-stats.name.rage=Rage
-stats.name.energy=Energy
-stats.name.maxmana=Mana Max.
-stats.name.maxrage=Rage Max.
-stats.name.maxenergy=Energy Max.
-stats.name.mana_regen=Mana Regen.
-stats.name.armor=Armor
-stats.name.clarity=Clarity
-stats.name.spirit=Spirituality
-stats.name.damage=Damages
-stats.name.critic=Critical
 
-stats.desc.magic=+ 5 magics per point
-stats.desc.power=+ 5 powers per point
-stats.desc.stamina=+ 1 hearth per 20 points
-stats.desc.strength=+ 5 power per point
-stats.desc.agility=+ 0.2% critic and 2 power per point
-stats.desc.clarity=+ 5 magic and 20 manas per point
-stats.desc.spirit=+ 1 mana regen / sec per 10 points
-stats.desc.maxmana=+ 1 mana per point
-stats.desc.maxrage=+ 1 rage per point
-stats.desc.maxenergy=+ 1 energy per point
+stats.agility=Agility
+stats.agility.desc=+ 0.2 critic and 2 power per point
+
+stats.magic=Magic
+stats.magic.desc=Magic power increases your magical damages
+
+stats.stamina=Stamina
+stats.stamina.desc=+ 1 hearth per 20 points
+
+stats.strength=Strength
+stats.strength.desc=+ 5 power per point
+
+stats.clarity=Clarity
+stats.clarity.desc=+ 5 magic and 20 manas per point
+
+stats.spirit=Spirituality
+stats.spirit.desc=+ 1 mana regen / sec per 10 points
+
+#   LANG CLASSE
+class.choose=Choose a class to get more informations about it
+
+class.champion=Champion
+class.champion.slogan=The Champion, the living force
+class.champion.desc=This class will make you resistant on melee fights.;His main role is to protect his allies from ennemis.;He has to stay in front line to get mobs agressions.;He can charge, spawn a shockwave, increase it armor...
+
+class.rogue=Rogue
+class.rogue.slogan=The living shadow: The Rogue
+class.rogue.desc=You will become a darkness master: a rogue;You have strong physic damages. You;can become invisible and hit /poison ennemis;by surprises. Your critical ratio is doubled;when you are behind your target.
+
+class.necromancer=Necromancer
+class.necromancer.slogan=Necromancer, the sombre magician
+class.necromancer.desc=You will become a strong death wizard.;In a group, he has to deal damages to mobs;He has to stay back and hit with his spells.;He can also summons monsters to help him.
+
+class.priest=Priest
+class.priest.slogan=The Priest, tranquil mind
+class.priest.desc=A spriritual classe, which consist in healing;and buffing players. In group, you have to stay;behind and keep your allies alive and buffed.
+            
+class.mage=Mage
+class.mage.slogan=An elementalist magician
+class.mage.desc=A class which deal heavy magic damages.;It spells can also burn or slow the ennemi;You have to stay away from ennemis;to deal damages without being hitten
+
+class.ranger=Ranger
+class.ranger.slogan=The ingenious Ranger
+class.ranger.desc=A strong damage dealer class.;He hits ennemis with his powerful bow.;He also have spells (based on arrows) and;he can summons wolves
+
+#   SPELLS
+spell.charge=Charge
+spell.charge.desc=Le Champion charge et cree une explosion sous ses pieds
+
+spell.shockwave=Onde de choc
+spell.shockwave.desc=Le Champion cree une explosion autour de lui
+
+spell.cleave=Enchainement
+spell.cleave.desc=Le Champion attaque toutes les cibles devant lui en infligeant @dp degats
+
+spell.firecon=Cone de feu
+spell.firecon.desc=Invoque un cone de feu qui inflige @dm degats a la cible
+
+spell.freezecube=Glaciation
+spell.freezecube.desc=Gele la cible pour la ralentir et lui infliger @dm degats
+
+spell.transfert=Transfert
+spell.transfert.desc=Echange votre position avec celle de votre cible
+
+spell.fielddestruction=Effrondrement
+spell.fielddestruction.desc=Retournes le terrain contre votre cible
+
+spell.drain=Drain
+spell.drain.desc=Ponctionnes @dm point de sante sante a votre cible
+
+spell.zombie_summon=Invocation: Zombie
+spell.zombie_summon.desc=Invoque jusqu'a 3 zombies qui combatte a vos cotes
+
+

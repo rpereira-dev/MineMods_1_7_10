@@ -12,7 +12,7 @@
   "credits": "The Forge and FML guys, for making this example",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": ["mineutils", "minestats", "minespells"]
+  "dependencies": ["mineutils", "minestats", "minespells", "mineexp"]
 }
 
 ]

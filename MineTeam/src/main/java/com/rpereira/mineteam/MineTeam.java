@@ -1,5 +1,7 @@
 package com.rpereira.mineteam;
 
+import java.util.ArrayList;
+
 import com.rpereira.mineteam.client.MineTeamProxyClient;
 import com.rpereira.mineteam.client.gui.GuiTeamOverlay;
 import com.rpereira.mineteam.common.MineTeamProxy;
@@ -11,6 +13,8 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.scoreboard.ScorePlayerTeam;
 
 @Mod(modid = MineTeam.MODID, name = MineTeam.NAME, version = MineTeam.VERSION)
 public class MineTeam {
@@ -36,5 +40,25 @@ public class MineTeam {
 	@SideOnly(Side.CLIENT)
 	public static final GuiTeamOverlay guiTeamOverlay() {
 		return (MineTeamProxyClient.guiTeamOverlay());
+	}
+
+	public static EntityPlayer[] getTeamMembers(EntityPlayer player) {
+		ScorePlayerTeam team = player.getWorldScoreboard().getPlayersTeam(player.getCommandSenderName());
+		if (team == null) {
+			return (new EntityPlayer[0]);
+		}
+		ArrayList<EntityPlayer> players = new ArrayList<EntityPlayer>(team.getMembershipCollection().size());
+		for (Object obj : team.getMembershipCollection()) {
+			EntityPlayer otherPlayer = player.getEntityWorld().getPlayerEntityByName(obj.toString());
+			if (otherPlayer != null) {
+				players.add(otherPlayer);
+			}
+		}
+		return (players.toArray(new EntityPlayer[players.size()]));
+	}
+
+	public static String getTeamPrefix(EntityPlayer player) {
+		ScorePlayerTeam team = player.getWorldScoreboard().getPlayersTeam(player.getCommandSenderName());
+		return (team == null ? null : team.getColorPrefix());
 	}
 }

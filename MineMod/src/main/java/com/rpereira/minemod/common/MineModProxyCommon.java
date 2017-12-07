@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.rpereira.minemod.common.classes.MineModClasses;
-import com.rpereira.minemod.common.exp.MineModExp;
+import com.rpereira.minemod.common.entity.MineModEntities;
+import com.rpereira.minemod.common.item.MineModItems;
 import com.rpereira.minemod.common.spells.MineModSpells;
 import com.rpereira.minemod.common.stats.MineModStats;
 import com.rpereira.minestats.MineStats;
@@ -19,14 +20,16 @@ import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 
 public class MineModProxyCommon implements IMineModProxy {
 
+	/** the proxies */
 	protected ArrayList<IMineModProxy> proxies;
 
 	public MineModProxyCommon() {
 		this.proxies = new ArrayList<IMineModProxy>();
 		this.addProxy(new MineModStats());
 		this.addProxy(new MineModSpells());
-		this.addProxy(new MineModExp());
 		this.addProxy(new MineModClasses());
+		this.addProxy(new MineModItems());
+		this.addProxy(new MineModEntities());
 	}
 
 	public void addProxy(IMineModProxy mineModProxy) {
@@ -58,7 +61,7 @@ public class MineModProxyCommon implements IMineModProxy {
 		ItemStack is = event.item.getEntityItem();
 		if (!MineStats.itemStackHasStats(is)) {
 			Stats stats = new Stats();
-			stats.addStat(MineModStats.STAT_AGILITY, new Random().nextFloat());
+			stats.addStat(MineModStats.STAT_STRENGTH, new Random().nextFloat() * 100);
 			MineStats.setItemStackStats(is, stats);
 		}
 	}

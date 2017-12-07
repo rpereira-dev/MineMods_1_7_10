@@ -12,8 +12,7 @@ public class GuiTeamOverlayPlayerRendererDefault extends GuiTeamOverlayPlayerRen
 	public int render(World world, EntityPlayer player, FontRenderer font, int x, int y) {
 
 		GuiUtils.drawEntity(x, y + 10, 8, 0, 0, player);
-
-		String playername = player.getCommandSenderName();
+		String playername = player == null ? "null" : player.getCommandSenderName();
 		int color = Integer.MAX_VALUE;
 		font.drawStringWithShadow(playername, x + 34 - font.getStringWidth(playername) / 2, y, color);
 

@@ -21,8 +21,8 @@ public class MineSpells {
 
 	private static int nextID = 0;
 
-	@SidedProxy(clientSide = "com.rpereira.minespells.client.MineSpellProxyClient", serverSide = "com.rpereira.minespells.common.MineSpellProxy")
-	public static MineSpellProxy proxy;
+	@SidedProxy(clientSide = "com.rpereira.minespells.client.MineSpellProxyClient", serverSide = "com.rpereira.minespells.common.MineSpellProxyServer")
+	private static MineSpellProxy proxy;
 
 	@EventHandler
 	public void preInit(FMLInitializationEvent event) {
@@ -49,5 +49,9 @@ public class MineSpells {
 	/** get a spell by it id */
 	public static final Spell getSpellByID(int id) {
 		return (SPELLS.get(id));
+	}
+
+	public static MineSpellProxy proxy() {
+		return (proxy);
 	}
 }

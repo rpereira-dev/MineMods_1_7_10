@@ -31,7 +31,7 @@ public class PacketExpBarUpdate implements IMessage {
 	public void fromBytes(ByteBuf buf) {
 		this.uuid = buf.readInt();
 		try {
-			this.attributes = PacketUtils.readHashMap(buf);
+			this.attributes = (HashMap<Object, Object>) PacketUtils.readHashMap(buf);
 		} catch (Exception e) {
 			e.printStackTrace();
 			this.attributes = null;

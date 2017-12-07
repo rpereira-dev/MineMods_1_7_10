@@ -3,7 +3,9 @@ package com.rpereira.minespells.common;
 import com.rpereira.minespells.common.packets.Packets;
 import com.rpereira.mineutils.Logger;
 
-public class MineSpellProxy {
+import net.minecraft.entity.Entity;
+
+public abstract class MineSpellProxy {
 
 	public void preInit() {
 		Logger.get().log(Logger.Level.FINE, "PreInit MineSpellProxy");

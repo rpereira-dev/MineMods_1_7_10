@@ -48,16 +48,34 @@ public class MineStats {
 	}
 
 	/** return the stats for the given entity */
-	public static Stats getEntityStats(EntityLivingBase entity) {
-		return getEquipementStats(entity.getLastActiveItems());
+	public static Stats getEquipmentStats(EntityLivingBase entity) {
+		return (getEquipmentStats(new Stats(), entity));
+	}
+
+	public static Stats getEquipmentStats(Stats dst, EntityLivingBase entity) {
+		ItemStack[] is = entity.getLastActiveItems();
+		ItemStack[] is2 = new ItemStack[is.length + 1];
+		for (int i = 0; i < is.length; i++) {
+			is2[i] = is[i];
+		}
+		is2[is.length] = entity.getHeldItem();
+
+		return (getEquipementStats(dst, is2));
 	}
 
 	/** retur the combined stats of the given itemstacks */
-	public static Stats getEquipementStats(ItemStack... itemStacks) {
-		Stats total = new Stats();
-		for (ItemStack itemStack : itemStacks) {
+	public static Stats getEquipementStats(Stats dst, ItemStack... itemStacks) {
+		if (dst == null) {
+			dst = new Stats();
+		} else {
+			dst.reset();
+		}
+		for (ItemStack is : itemStacks) {
 
-			ItemStack is = itemStack;
+			if (is == null) {
+				continue;
+			}
+
 			NBTTagCompound tag = is.getTagCompound();
 			if (tag == null) {
 				continue;
@@ -65,12 +83,12 @@ public class MineStats {
 
 			for (Stat stat : STATS.values()) {
 				if (tag.hasKey(stat.getUnlocalizedName())) {
-					total.addStat(stat, tag.getFloat(stat.getUnlocalizedName()));
+					dst.addStat(stat, tag.getFloat(stat.getUnlocalizedName()));
 				}
 			}
 
 		}
-		return total;
+		return (dst);
 	}
 
 	/** retur the stats of the given itemstack */

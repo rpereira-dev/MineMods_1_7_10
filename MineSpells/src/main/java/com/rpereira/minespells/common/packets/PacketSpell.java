@@ -1,17 +1,21 @@
 package com.rpereira.minespells.common.packets;
 
 import com.rpereira.minespells.MineSpells;
+import com.rpereira.minespells.common.MineSpellProxyServer;
 import com.rpereira.minespells.common.Spell;
+import com.rpereira.mineutils.Logger;
 
-import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 
-public class PacketSpellToServer implements IMessage {
+public class PacketSpell implements IMessage {
 
 	/** the spell id */
 	public int id;
@@ -22,7 +26,7 @@ public class PacketSpellToServer implements IMessage {
 	/** the entity target id */
 	public int target;
 
-	public PacketSpellToServer() {
+	public PacketSpell() {
 		this(-1, -1, -1);
 	}
 
@@ -35,7 +39,7 @@ public class PacketSpellToServer implements IMessage {
 	 * @param target
 	 *            : the target entity id
 	 */
-	public PacketSpellToServer(int id, int caster, int target) {
+	public PacketSpell(int id, int caster, int target) {
 		this.id = id;
 		this.caster = caster;
 		this.target = target;
@@ -55,32 +59,40 @@ public class PacketSpellToServer implements IMessage {
 		buf.writeInt(this.target);
 	}
 
-	public static class Handler implements IMessageHandler<PacketSpellToServer, IMessage> {
-
-		/** the max distance the spell animation should be play */
-		public static final double ANIMATION_DISTANCE = 64.0d;
-
+	public static class HandlerClient implements IMessageHandler<PacketSpell, IMessage> {
 		@Override
-		public IMessage onMessage(PacketSpellToServer message, MessageContext ctx) {
-			Spell spell = MineSpells.getSpellByID(message.id);
+		@SideOnly(Side.CLIENT)
+		public IMessage onMessage(PacketSpell message, MessageContext ctx) {
 
+			Spell spell = MineSpells.getSpellByID(message.id);
 			if (spell == null) {
 				return (null);
 			}
 
-			// do the spell
+			World world = Minecraft.getMinecraft().theWorld;
+			Entity caster = world.getEntityByID(message.caster);
+			Entity target = world.getEntityByID(message.target);
+			spell.playAnimation(caster, target);
+			return (null);
+		}
+	}
+
+	public static class HandlerServer implements IMessageHandler<PacketSpell, IMessage> {
+
+		@Override
+		public IMessage onMessage(PacketSpell message, MessageContext ctx) {
+			Spell spell = MineSpells.getSpellByID(message.id);
+
+			if (spell == null) {
+				Logger.get().log(Logger.Level.ERROR, "Received an unknown spell server side...");
+				return (null);
+			}
+
 			World world = ctx.getServerHandler().playerEntity.worldObj;
 			Entity caster = world.getEntityByID(message.caster);
 			Entity target = world.getEntityByID(message.target);
+			MineSpellProxyServer.launchSpell(caster, target, spell);
 
-			spell.processSpell(caster, target);
-
-			// send response to client
-			Entity entity = (target == null) ? ((caster == null) ? ctx.getServerHandler().playerEntity : caster)
-					: target;
-			TargetPoint point = new TargetPoint(entity.dimension, entity.posX, entity.posY, entity.posZ,
-					ANIMATION_DISTANCE);
-			Packets.network.sendToAllAround(new PacketSpellToClient(message), point);
 			return (null);
 		}
 	}

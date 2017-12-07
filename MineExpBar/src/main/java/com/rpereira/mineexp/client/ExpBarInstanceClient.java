@@ -12,8 +12,8 @@ public class ExpBarInstanceClient extends ExpBarInstance {
 	/** exp to add for the bar animation */
 	private int expToAdd = 0;
 
-	public ExpBarInstanceClient(ExpBar expBar, int uuid, Object... attributes) {
-		super(expBar, uuid, attributes);
+	public ExpBarInstanceClient(ExpBar expBar, int uuid) {
+		super(expBar, uuid);
 	}
 
 	/** delayed exp */

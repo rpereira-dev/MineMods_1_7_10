@@ -8,7 +8,7 @@ public class Packets {
 	public static SimpleNetworkWrapper network = NetworkRegistry.INSTANCE.newSimpleChannel("MineSpells");
 
 	public static void preInit() {
-		network.registerMessage(PacketSpellToClient.Handler.class, PacketSpellToClient.class, 0, Side.CLIENT);
-		network.registerMessage(PacketSpellToServer.Handler.class, PacketSpellToServer.class, 1, Side.SERVER);
+		network.registerMessage(PacketSpell.HandlerClient.class, PacketSpell.class, 0, Side.CLIENT);
+		network.registerMessage(PacketSpell.HandlerServer.class, PacketSpell.class, 1, Side.SERVER);
 	}
 }

@@ -7,8 +7,6 @@ public class MineExpServer extends MineExpProxy {
 
 	private static MineExpServer MINE_EXP_SERVER;
 
-	private int nextExpBarInstanceUUID = 0;
-
 	public MineExpServer() {
 		super();
 		MINE_EXP_SERVER = this;
@@ -23,9 +21,5 @@ public class MineExpServer extends MineExpProxy {
 
 	public final static MineExpServer instance() {
 		return (MINE_EXP_SERVER);
-	}
-
-	public ExpBarInstance createExpBarInstance(ExpBar expBar, Object... attributes) {
-		return (super.createExpBarInstance(expBar, this.nextExpBarInstanceUUID++, attributes));
 	}
 }

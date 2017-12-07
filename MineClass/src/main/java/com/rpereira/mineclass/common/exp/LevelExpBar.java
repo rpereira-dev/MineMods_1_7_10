@@ -1,13 +1,10 @@
-package com.rpereira.minemod.common.exp;
+package com.rpereira.mineclass.common.exp;
 
 import com.rpereira.mineexp.client.ExpBarInstanceClient;
 import com.rpereira.mineexp.common.ExpBar;
 import com.rpereira.mineexp.common.ExpBarInstance;
 
 public class LevelExpBar extends ExpBar {
-
-	private static final double damping = 0.4D;
-	private static final int scale = 100;
 
 	@Override
 	public int getMaximumExpForLevel(int level) {

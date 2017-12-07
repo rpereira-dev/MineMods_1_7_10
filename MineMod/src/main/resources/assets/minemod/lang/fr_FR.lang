@@ -2,35 +2,89 @@
 #   lang: France
 #   lang: FR_FR
 
-#   Stats
-stats.conseil=Conseils
-stats.name.hp=PV
-stats.name.magic=Magie
-stats.name.agility=Agilite
-stats.name.stamina=Endurance
-stats.name.power=Puissance
-stats.name.strength=Force
-stats.name.mana=Mana
-stats.name.rage=Rage
-stats.name.energy=Energie
-stats.name.maxmana=Mana Max.
-stats.name.maxrage=Rage Max.
-stats.name.maxenergy=Energy Max.
-stats.name.mana_regen=Mana Regen.
-stats.name.armor=Armure
-stats.name.clarity=Clarité
-stats.name.spirit=Esprit
-stats.name.magic=Puissance
-stats.name.damage=Degats
-stats.name.critic=Critique
+#   LANG (ou communement appele bordel)
+button.selection=Selectionner
+button.back_selection=<- Retour a la selection
 
-stats.desc.magic=+ 5 magics per point
-stats.desc.power=+ 5 power per point
-stats.desc.stamina=+ 1 hearth per 20 points
-stats.desc.strength=+ 5 power per point
-stats.desc.agility=+ 0.2% critic per point
-stats.desc.clarity=+ 5 magic and 20 manas per point
-stats.desc.spirit=+ 1 mana regen / sec per 10 points
-stats.desc.maxmana=+ 1 mana per point
-stats.desc.maxrage=+ 1 rage per point
-stats.desc.maxenergy=+ 1 energy per point
+#  KEY BINDINGS
+key.categories.minemod = MineMod
+key.minemod.class = Selection de Classe
+key.minemod.spellshortcut = Raccourci sort
+
+#   Stats
+stats.agility=Agilite
+stats.agility.desc=+ 0.2 critique et 2 puissance par point
+
+stats.magic=Magie
+stats.magic.desc=La Magie augmente vos degats magiques
+
+stats.stamina=Endurance
+stats.stamina.desc=+ 1 coeur pour 20 points
+
+stats.strength=Force
+stats.strength.desc=+ 5 puissance par point
+
+stats.power=Puissance
+stats.power.desc=La Puissance augmente vos degats physiques
+
+stats.clarity=Clarite
+stats.clarity.desc=+ 5 magie and 20 manas par point
+
+stats.spirit=Spiritualite
+stats.spirit.desc=+ 1 mana regen / sec pour 10 points
+
+#   LANG CLASSE
+class.choose=Choisis une classe pour avoir plus d'informations
+
+class.champion=Champion
+class.champion.slogan=Le Champion, force brute
+class.champion.desc=Cette classe te rendra resistant au combat de melee.;Tu devras proteger tes allies des monstres, en;restant en premiere ligne pour attirer les monstres.;Il peut charger, ameliorer son armure...
+
+class.rogue=Voleur
+class.rogue.slogan=L'ombre vivante: le Voleur
+class.rogue.desc=Tu deviendras le mettre des ombres : un voleur.;Cette classe te procurera de puissants degats;physique. Tu pourras devenir invisible,;empoisonner tes ennemis. L'agilite est;est double quand tu es derriere ta cible
+
+class.necromancer=Necromancien
+class.necromancer.slogan=Le Necromancien, sombre magicien
+class.necromancer.desc=Tu deviendras un puissant magicien mortuaire;Ton role principal est d'infliger des degats;Tu dois rester en retrait et envoyer tes sorts;ou tes invocations sur les ennemis.
+
+class.priest=Pretre
+class.priest.slogan=Le Pretre, esprit tranquille
+class.priest.desc=Une classe spirituel, tu dois soigner ou;donner des bonus a tes allies. Dans un;groupe, reste loin des monstres.
+            
+class.mage=Mage
+class.mage.slogan=Le Mage elementaliste
+class.mage.desc=Une classe qui inflige de puissants degats. Ses;sorts peuvent enflammer ou ralentir;les ennemis. Essayer de rester loin des ennemis;pour les attaquer sans qu'il ne vous touche.
+
+class.ranger=Ranger
+class.ranger.slogan=Le Ranger ingenieux
+class.ranger.desc=Il dispose d'importante source de degats;Il peut invoquer des loups, ou tirer;des fleches a effet (explosions, ;magie, poison)
+
+#   SPELLS
+spell.charge=Charge
+spell.charge.desc=Le Champion charge et cree une explosion sous ses pieds
+
+spell.shockwave=Onde de choc
+spell.shockwave.desc=Le Champion cree une explosion autour de lui
+
+spell.cleave=Enchainement
+spell.cleave.desc=Le Champion attaque toutes les cibles devant lui en infligeant @dp degats
+
+spell.firecon=Cone de feu
+spell.firecon.desc=Invoque un cone de feu qui inflige @dm degats a la cible
+
+spell.freezecube=Glaciation
+spell.freezecube.desc=Gele la cible pour la ralentir et lui infliger @dm degats
+
+spell.transfert=Transfert
+spell.transfert.desc=Echange votre position avec celle de votre cible
+
+spell.fielddestruction=Effrondrement
+spell.fielddestruction.desc=Retournes le terrain contre votre cible
+
+spell.drain=Drain
+spell.drain.desc=Ponctionnes @dm point de sante a votre cible
+
+spell.zombie_summon=Invocation: Zombie
+spell.zombie_summon.desc=Invoque jusqu'a 3 zombies qui combatte a vos cotes
+

@@ -11,7 +11,11 @@ import com.rpereira.mineutils.ChatColor;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 
 /** a class which represent an entity class */
 public abstract class EntityClass {
@@ -34,6 +38,9 @@ public abstract class EntityClass {
 	/** the resource stat for this class */
 	private final StatResource resourceStat;
 
+	/** the resource location of the class icons */
+	private final ResourceLocation res;
+
 	/** a unique id */
 	private final int id;
 
@@ -48,14 +55,30 @@ public abstract class EntityClass {
 	 * @param chatColor
 	 *            : the chat color to be used when refering to this class
 	 */
-	public EntityClass(StatResource resourceStat, String unlocalizedName, ChatColor chatColor) {
+	public EntityClass(String resLocation, StatResource resourceStat, String unlocalizedName, ChatColor chatColor) {
+		this.res = resLocation == null ? null : new ResourceLocation(resLocation);
 		this.resourceStat = resourceStat;
+		this.statsPerLevel = new Stats();
 		this.unlocalizedName = unlocalizedName;
 		this.chatColor = chatColor;
 		this.spells = new ArrayList<Spell>();
-		this.statsPerLevel = new Stats();
 		this.defaultStats = new Stats();
 		this.id = nextID++;
+
+		this.setDefaultStat(resourceStat.getStatmax(), resourceStat.getStatmax().getDefaultValue());
+	}
+
+	public final ResourceLocation getResourceLocation() {
+		return (this.res);
+	}
+
+	public final String getSlogan() {
+		return (I18n.format("class." + this.getUnlocalizedName() + ".slogan"));
+	}
+
+	public final String[] getDescription() {
+		String desc = I18n.format("class." + this.getUnlocalizedName() + ".desc");
+		return (desc.split(";"));
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -90,28 +113,7 @@ public abstract class EntityClass {
 	 * defaultValue + perLevelValue * level
 	 */
 	public float getStatForLevel(Stat stat, int level) {
-		// the default stats
-		Stats defaultStats = this.getDefaultStats();
-		float defaultValue = 0.0F;
-		if (defaultStats != null) {
-			Float value = defaultStats.get(stat);
-			if (value != null) {
-				defaultValue = value.floatValue();
-			}
-		}
-
-		// get the stats per level value
-		Stats statsPerLevel = this.getStatsPerLevel();
-		float perLevelValue = 0.0F;
-		if (statsPerLevel != null) {
-			Float value = statsPerLevel.get(stat);
-			if (value != null) {
-				perLevelValue = value.floatValue();
-			}
-		}
-
-		// return the final value
-		return (defaultValue + perLevelValue * level);
+		return (stat.getDefaultValue() * level);
 	}
 
 	/** get the spell for this class */
@@ -155,15 +157,47 @@ public abstract class EntityClass {
 		// entityClassInstance.getEntity());
 	}
 
-	/** create a new instance of this EntityClass */
-	public EntityClassInstance newInstance(EntityLivingBase entityLivingBase) {
-		return (new EntityClassInstance(entityLivingBase, this));
-	}
-
 	/** get the resourc estat for this class */
 	public StatResource getResourceStat() {
 		return (this.resourceStat);
 	}
+
+	public void onAttack(EntityClassInstance entityClassInstance, EntityLivingBase attacked, DamageSource damageSource,
+			float amount) {
+		entityClassInstance.setAttribute("lastAttack", System.currentTimeMillis());
+	}
+
+	public void onRespawn(EntityClassInstance entityClassInstance) {
+	}
+
+	public void onBeingAttacked(EntityClassInstance entityClassInstance, Entity attacker, DamageSource damageSource,
+			float amount) {
+	}
+
+	public void onEntityDied(EntityClassInstance entityClassInstance, DamageSource source) {
+	}
+
+	public Spell getSpell(int i) {
+		if (i >= 0 && i < this.spells.size()) {
+			return (this.spells.get(i));
+		}
+		return (null);
+	}
+
+	public void onSpellLaunched(EntityClassInstance entityClassInstance, Entity target, Spell spell) {
+		entityClassInstance.setAttribute("lastAttack", System.currentTimeMillis());
+	}
+
+	public String getName() {
+		return (I18n.format("class." + this.getUnlocalizedName()));
+	}
+
+	public void onResourcesUpdated(EntityClassInstance entityClassInstance) {
+	}
+
+	public abstract int getRGBColor();
+
+	public abstract String[] getAdvices();
 
 	/** instantiate a new class */
 	// public static IClass load_classe_from_ord(int ord) {

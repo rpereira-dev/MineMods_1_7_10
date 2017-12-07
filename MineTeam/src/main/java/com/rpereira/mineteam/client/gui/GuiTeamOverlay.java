@@ -1,12 +1,13 @@
 package com.rpereira.mineteam.client.gui;
 
+import com.rpereira.mineteam.MineTeam;
+
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
@@ -20,7 +21,7 @@ public class GuiTeamOverlay {
 	@SideOnly(Side.CLIENT)
 	public void onGuiIngameRender(RenderGameOverlayEvent.Chat event) {
 		Minecraft mc = Minecraft.getMinecraft();
-		if (!mc.gameSettings.showDebugInfo) {
+		if (!mc.gameSettings.showDebugInfo && mc.inGameHasFocus) {
 
 			EntityPlayer player = mc.thePlayer;
 			FontRenderer font = mc.fontRenderer;
@@ -29,33 +30,28 @@ public class GuiTeamOverlay {
 			mc.mcProfiler.startSection("team");
 
 			int offx = 14;
-			int offy = 8;
+			int offy = 0;
 
 			if (player.getTeam() != null) {
 
-				ScorePlayerTeam team = player.getWorldScoreboard().getPlayersTeam(player.getCommandSenderName());
-
 				// render the player
-				String prefix = team.getColorPrefix();
+				String prefix = MineTeam.getTeamPrefix(player);
 				boolean hasPrefix = prefix != null && prefix.length() > 0;
 				int dy = hasPrefix ? 14 : 0;
-				
+
 				if (this.playerRenderer != null) {
 					dy += this.playerRenderer.render(world, player, font, offx, offy + dy);
 				}
-				
+
+				EntityPlayer[] players = MineTeam.getTeamMembers(player);
+
 				// render other players
 				if (this.otherPlayerRenderer != null) {
-					for (Object obj : team.getMembershipCollection()) {
-						String playername = obj.toString();
-//						if (playername.equals(player.getCommandSenderName())) {
-//							continue;
-//						}
-						EntityPlayer nextplayer = world.getPlayerEntityByName(playername);
+					for (EntityPlayer nextplayer : players) {
 						dy += this.otherPlayerRenderer.render(world, nextplayer, font, offx, offy + dy);
 					}
 				}
-				
+
 				// render team name
 				int color = Integer.MAX_VALUE;
 				if (prefix != null && prefix.length() > 0) {

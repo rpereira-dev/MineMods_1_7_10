@@ -1,6 +1,7 @@
 package com.rpereira.mineexp;
 
 import com.rpereira.mineexp.common.ExpBar;
+import com.rpereira.mineexp.common.ExpBarInstance;
 import com.rpereira.mineexp.common.MineExpProxy;
 import com.rpereira.mineexp.common.packet.Packets;
 import com.rpereira.mineutils.Logger;
@@ -38,5 +39,13 @@ public class MineExp {
 
 	public static ExpBar getExpBar(int expbarid) {
 		return (proxy.getExpBar(expbarid));
+	}
+
+	public static ExpBarInstance createExpBarInstance(ExpBar expBar, int uuid) {
+		return (proxy.createExpBarInstance(expBar, uuid));
+	}
+
+	public static ExpBarInstance createExpBarInstance(ExpBar expBar) {
+		return (proxy.createExpBarInstance(expBar));
 	}
 }

@@ -3,34 +3,23 @@
 #   lang: FR_FR
 
 #   Stats
-stats.conseil=Conseils
-stats.name.hp=PV
-stats.name.magic=Magie
-stats.name.agility=Agilite
-stats.name.stamina=Endurance
-stats.name.power=Puissance
-stats.name.strength=Force
-stats.name.mana=Mana
-stats.name.rage=Rage
-stats.name.energy=Energie
-stats.name.maxmana=Mana Max.
-stats.name.maxrage=Rage Max.
-stats.name.maxenergy=Energy Max.
-stats.name.mana_regen=Mana Regen.
-stats.name.armor=Armure
-stats.name.clarity=Clarité
-stats.name.spirit=Esprit
-stats.name.magic=Puissance
-stats.name.damage=Degats
-stats.name.critic=Critique
+stats.mana=Mana
+stats.mana.desc=mana ressource
 
-stats.desc.magic=+ 5 magics per point
-stats.desc.power=+ 5 power per point
-stats.desc.stamina=+ 1 hearth per 20 points
-stats.desc.strength=+ 5 power per point
-stats.desc.agility=+ 0.2% critic per point
-stats.desc.clarity=+ 5 magic and 20 manas per point
-stats.desc.spirit=+ 1 mana regen / sec per 10 points
-stats.desc.maxmana=+ 1 mana per point
-stats.desc.maxrage=+ 1 rage per point
-stats.desc.maxenergy=+ 1 energy per point
+stats.rage=Rage
+stats.rage.desc=Rage ressource
+
+stats.energy=Energy
+stats.energy.desc=Energie ressource
+
+stats.maxmana=Mana Max.
+stats.maxmana.desc=+ 1 mana max. par point
+
+stats.maxrage=Rage Max.
+stats.maxrage.desc=+ 1 rage max. par point
+
+stats.maxenergy=Energie Max.
+stats.maxenergy.desc=+ 1 energie max. par point
+
+stats.mana_per_sec=Mana Regen.
+stats.mana_per_sec.desc=Mana regeneration par seconde

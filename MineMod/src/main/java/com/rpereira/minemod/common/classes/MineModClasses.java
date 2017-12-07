@@ -7,12 +7,14 @@ import com.rpereira.minemod.common.IMineModProxy;
 
 public class MineModClasses implements IMineModProxy {
 
-	public static final EntityClass CLASS_CHAMPION = new EntityClassChampion();
-	public static final EntityClass CLASS_ROGUE = new EntityClassRogue();
-	public static final EntityClass CLASS_NECROMANCER = new EntityClassNecromancer();
-	public static final EntityClass CLASS_RANGER = new EntityClassRanger();
-	public static final EntityClass CLASS_PRIEST = new EntityClassPriest();
-	public static final EntityClass CLASS_MAGE = new EntityClassMage();
+	public static final EntityClass CHAMPION = new EntityClassChampion();
+	public static final EntityClass ROGUE = new EntityClassRogue();
+	public static final EntityClass NECROMANCER = new EntityClassNecromancer();
+	public static final EntityClass RANGER = new EntityClassRanger();
+	public static final EntityClass PRIEST = new EntityClassPriest();
+	public static final EntityClass MAGE = new EntityClassMage();
+
+	public static final EntityClass HOLY_BLAZE = new EntityClassHolyBlaze();
 
 	@Override
 	public void preInit() {
@@ -21,11 +23,13 @@ public class MineModClasses implements IMineModProxy {
 	@Override
 	public void init() {
 		MineClassProxy proxy = MineClass.proxy();
-		proxy.registerClass(CLASS_CHAMPION);
-		proxy.registerClass(CLASS_ROGUE);
-		proxy.registerClass(CLASS_NECROMANCER);
-		proxy.registerClass(CLASS_RANGER);
-		proxy.registerClass(CLASS_PRIEST);
-		proxy.registerClass(CLASS_MAGE);
+		proxy.registerClass(CHAMPION);
+		proxy.registerClass(ROGUE);
+		proxy.registerClass(NECROMANCER);
+		proxy.registerClass(RANGER);
+		proxy.registerClass(PRIEST);
+		proxy.registerClass(MAGE);
+
+		proxy.registerClass(HOLY_BLAZE);
 	}
 }
